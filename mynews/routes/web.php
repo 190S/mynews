@@ -16,8 +16,8 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function() {
-  Route::get('news/create', 'Admin\NewsController@add');
-  Route::get('profile/edit', 'Admin\ProfileController@edit');
+  Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+  Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
 });
 
 //課題10-03
@@ -30,3 +30,11 @@ web.phpを編集してadmin/profile/edit にアクセスしたら
 ProfileController の edit Action に割り当てるように設定してください。 */
 
 //行番号20に追記しました。
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
