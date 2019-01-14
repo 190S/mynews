@@ -87,33 +87,17 @@ class NewsController extends Controller
       $path = $request->file('image')->store('public/image');
       $news->image_path = basename($path);
     }
-    elseif ($request->remove == 'true')    {
+    else {
       $news->image_path = null;
     }
-
-    else {
-      $news_form['image_path'] = $news->image_path;
-    }
-
 
     // \Debugbar::info(isset($news_form['image']));
     unset($news_form['_token']);
     unset($news_form['image']);
-    unset($news_form['remove']);
 
     //該当のデータを上書き保存
     $news->fill($news_form)->save();
     return redirect('admin/news');
-  }
-
-  //削除アクション
-  public function delete(Request $request)
-  {
-      // 該当するNews Modelを取得
-      $news = News::find($request->id);
-      // 削除する
-      $news->delete();
-      return redirect('admin/news/');
   }
 
 }
