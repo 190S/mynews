@@ -23,8 +23,12 @@ Route::group(['prefix' => 'admin'], function() {
   Route::post('news/edit', 'Admin\NewsController@update')->middleware('auth');
   Route::get('news/delete', 'Admin\NewsController@delete')->middleware('auth');
 
+  Route::get('profile', 'Admin\ProfileController@index')->middleware('auth');
   Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
   Route::post('profile/edit', 'Admin\ProfileController@update')->middleware('auth');
+  Route::get('profile/reup', 'Admin\ProfileController@reup')->middleware('auth');
+  Route::post('profile/reup', 'Admin\ProfileController@upgrade')->middleware('auth');
+  Route::get('profile/delete', 'Admin\ProfileController@delete')->middleware('auth');
 });
 
 //課題10-03
