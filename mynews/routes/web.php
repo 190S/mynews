@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'NewsController@index');
+
 
 Route::group(['prefix' => 'admin'], function() {
   Route::get('news', 'Admin\NewsController@index')->middleware('auth');
